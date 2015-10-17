@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Leaflet Map with Heatmap </title>
+    <meta charset="utf-8" />
+    <link 
+        rel="stylesheet" 
+        href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
+    />
+    <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    html, body, #map {
+      height: 100%;
+    }
+  </style>
+
+</head>
+<body>
+    <div id="map" style="width: 100%; height: 100%"></div>
+
+    <script
+       src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
+    </script>
+    
+    <script
+       src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js">
+    </script>
+    <script src="http://kibl.diphda.uberspace.de/jugendhackt/data.php?type=0"></script>
+    <script>
+
+        var map = L.map('map').setView([52.5076682,13.285055], 10);
+        mapLink = 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 18,
+        }).addTo(map);
+        
+        var heat = L.heatLayer(boxen,{
+            radius: 40,
+            blur: 35, 
+            maxZoom: 17,
+        }).addTo(map);
+        
+    </script>
+</body>   
+</html> f
