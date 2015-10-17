@@ -40,13 +40,13 @@
                 'Imagery © <a href="http://mapbox.com">Mapbox</a>',
             id: 'mapbox.streets'
         }).addTo(map);
-
+ L.marker([52.5379462,13.4289613]).addTo(map)
         function onLocationFound(e) {
             var radius = e.accuracy / 2;
 
            // L.marker(e.latlng).addTo(map)
                // .bindPopup("You are within " + radius + " meters from this point").openPopup();
-            L.marker([52.5379462,13.4289613]).addTo(map)
+           
            // .bindPopup('').openPopup();
            // L.circle(e.latlng, radius).addTo(map);
         }
