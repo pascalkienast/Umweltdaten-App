@@ -28,22 +28,38 @@
     <script
        src="http://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js">
     </script>
-    <script src="http://kibl.diphda.uberspace.de/jugendhackt/data.php?type=0"></script>
-    <script>
+    <div id="map"></div>
 
-        var map = L.map('map').setView([52.5076682,13.285055], 10);
-        mapLink = 
-            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-        L.tileLayer(
-            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; ' + mapLink + ' Contributors',
+    <script>
+        var map = L.map('map');
+
+        L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicGFzY2Fsa2llbmFzdDkiLCJhIjoiY2lmdjU2dnhjMDIydXU0bHpnNDF5ajExZSJ9.dhE60lpuRdtr1Z1Z0msrvg', {
             maxZoom: 18,
+            attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+                '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+                'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+            id: 'mapbox.streets'
         }).addTo(map);
-        
-       L.marker([52.5379462,13.4289613]).addTo(map)
-    .bindPopup('Aktiv')
-    .openPopup();
-        
+
+        function onLocationFound(e) {
+            var radius = e.accuracy / 2;
+
+           // L.marker(e.latlng).addTo(map)
+               // .bindPopup("You are within " + radius + " meters from this point").openPopup();
+            L.marker([52.5379462,13.4289613]).addTo(map)
+           // .bindPopup('').openPopup();
+           // L.circle(e.latlng, radius).addTo(map);
+        }
+
+        function onLocationError(e) {
+            alert(e.message);
+        }
+
+        map.on('locationfound', onLocationFound);
+        map.on('locationerror', onLocationError);
+
+        map.locate({setView: true, maxZoom: 16});
     </script>
+
 </body>   
-</html> f
+</html> 
